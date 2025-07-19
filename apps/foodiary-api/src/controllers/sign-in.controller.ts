@@ -1,6 +1,6 @@
 import z from 'zod';
-import { HttpRequest } from '../types/http';
-import { ok } from '../utils/http.util';
+import type { HttpRequest, HttpResponse } from '../types/http';
+import { badRequest, ok } from '../utils/http.util';
 
 const schema = z.object({
 	email: z.email(),
@@ -8,7 +8,11 @@ const schema = z.object({
 });
 
 export class SignInController {
-	static async handle(request: HttpRequest) {
-		return ok({ accessToken: 'token de acesso' });
+	static async handle({ body }: HttpRequest): Promise<HttpResponse> {
+		const { success, error, data } = schema.safeParse(body);
+
+		if (!success) return badRequest({ errors: error.issues });
+
+		return ok(data);
 	}
 }

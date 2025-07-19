@@ -11,3 +11,7 @@ export function created(body?: Record<string, any>): HttpResponse {
 export function badRequest(body?: Record<string, any>): HttpResponse {
 	return { statusCode: 400, body };
 }
+
+export function conflict(body?: Record<string, any>): HttpResponse {
+	return { statusCode: 409, body };
+}
