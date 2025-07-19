@@ -1,10 +1,10 @@
 import type { APIGatewayProxyEventV2 } from 'aws-lambda';
-import type { HttpRequest } from '../types/http';
+import type { HttpRequest } from '../types/http.type';
 
 export function parseEvent(event: APIGatewayProxyEventV2): HttpRequest {
-  const body = JSON.parse(event.body || '{}');
-  const params = event.pathParameters || {};
-  const queryParams = event.queryStringParameters || {};
+	const body = JSON.parse(event.body || '{}');
+	const params = event.pathParameters || {};
+	const queryParams = event.queryStringParameters || {};
 
-  return { body, params, queryParams };
+	return { body, params, queryParams };
 }

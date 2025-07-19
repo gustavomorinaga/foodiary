@@ -23,15 +23,22 @@ build:
 
 functions:
   signin:
-    handler: src/functions/signin.handler
+    handler: src/functions/sign-in.handler
     events:
       - httpApi:
-          path: /signin
+          path: /sign-in
           method: POST
 
   signup:
-    handler: src/functions/signup.handler
+    handler: src/functions/sign-up.handler
     events:
       - httpApi:
-          path: /signup
+          path: /sign-up
           method: POST
+
+  me:
+    handler: src/functions/me.handler
+    events:
+      - httpApi:
+          path: /me
+          method: GET

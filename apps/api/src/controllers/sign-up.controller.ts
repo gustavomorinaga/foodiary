@@ -3,7 +3,8 @@ import { eq } from 'drizzle-orm';
 import z from 'zod';
 import { db } from '../db/connection';
 import { schema } from '../db/schema';
-import type { HttpRequest, HttpResponse } from '../types/http';
+import { calculateGoals } from '../lib/calc-goals.lib';
+import type { HttpRequest, HttpResponse } from '../types/http.type';
 import { badRequest, conflict, created } from '../utils/http.util';
 
 const signInSchema = z.object({
@@ -38,14 +39,23 @@ export class SignUpController {
 		}
 
 		const { account, ...rest } = data;
+		const goals = calculateGoals({
+			activityLevel: rest.activityLevel,
+			birthDate: new Date(rest.birthDate),
+			gender: rest.gender,
+			goal: rest.goal,
+			height: rest.height,
+			weight: rest.weight,
+		});
 
 		const hashedPassword = await hash(account.password, 10);
 
 		const [user] = await db
 			.insert(schema.users)
 			.values({
-				...rest,
 				...account,
+				...rest,
+				...goals,
 				password: hashedPassword,
 				calories: 0,
 				proteins: 0,
