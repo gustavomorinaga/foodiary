@@ -56,3 +56,10 @@ functions:
       - httpApi:
           method: GET
           path: /meals
+
+  getMealByID:
+    handler: src/functions/get-meal-by-id.handler
+    events:
+      - httpApi:
+          method: GET
+          path: /meals/{mealID}
