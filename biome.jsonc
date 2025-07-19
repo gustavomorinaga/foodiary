@@ -1,4 +1,16 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
-	"extends": ["ultracite"]
+	"extends": ["ultracite"],
+	"overrides": [
+		{
+			"includes": ["apps/api/src/**/*.ts"],
+			"linter": {
+				"rules": {
+					"complexity": {
+						"noStaticOnlyClass": "off"
+					}
+				}
+			}
+		}
+	]
 }

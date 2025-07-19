@@ -1,6 +1,11 @@
 {
 	"name": "@foodiary/source",
 	"version": "0.0.0",
+	"scripts": {
+		"format": "pnpm -r --filter @foodiary/* run format",
+		"lint": "pnpm -r --filter @foodiary/* run lint",
+		"preinstall": "npx only-allow pnpm"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "2.1.2",
 		"ultracite": "5.0.46"

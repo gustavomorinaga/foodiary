@@ -1,6 +1,6 @@
 {
-  "id": "3baf1993-612a-439b-85ae-9044531da46b",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "511b1aa3-bc26-4ef7-9327-20cb23341245",
+  "prevId": "3baf1993-612a-439b-85ae-9044531da46b",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -69,6 +69,13 @@
           "primaryKey": false,
           "notNull": true
         },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
         "calories": {
           "name": "calories",
           "type": "integer",
@@ -101,9 +108,7 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
