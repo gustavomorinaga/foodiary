@@ -41,42 +41,36 @@ functions:
       - httpApi:
           method: POST
           path: /sign-in
-
   signup:
     handler: src/functions/sign-up.handler
     events:
       - httpApi:
           method: POST
           path: /sign-up
-
   me:
     handler: src/functions/me.handler
     events:
       - httpApi:
           method: GET
           path: /me
-
   createMeal:
     handler: src/functions/create-meal.handler
     events:
       - httpApi:
           method: POST
           path: /meals
-
   listMeals:
     handler: src/functions/list-meals.handler
     events:
       - httpApi:
           method: GET
           path: /meals
-
   getMealByID:
     handler: src/functions/get-meal-by-id.handler
     events:
       - httpApi:
           method: GET
           path: /meals/{mealID}
-
   fileUploadEvent:
     handler: src/functions/file-upload-event.handler
     events:
@@ -85,6 +79,12 @@ functions:
           event: s3:ObjectCreated:*
           existing: true
           forceDeploy: true
+  processMeal:
+    handler: src/functions/process-meal.handler
+    events:
+      - sqs:
+          arn: !GetAtt MealsQueue.Arn
+          batchSize: 1
 
 resources:
   Resources:

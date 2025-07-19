@@ -10,7 +10,6 @@ import { usersTable as users } from './users.schema';
 
 export const mealStatus = pgEnum('meal_status', [
 	'uploading',
-	'queued',
 	'processing',
 	'success',
 	'failed',
