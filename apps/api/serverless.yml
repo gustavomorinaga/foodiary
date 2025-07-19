@@ -13,6 +13,7 @@ provider:
     DATABASE_URL: ${env:DATABASE_URL}
     JWT_SECRET: ${env:JWT_SECRET}
     BUCKET_NAME: !Ref UploadsBucket
+    MEALS_QUEUE_URL: !GetAtt MealsQueue.QueueUrl
   iam:
     role:
       statements:
@@ -20,6 +21,10 @@ provider:
           Action:
             - s3:PutObject
           Resource: !Sub "${UploadsBucket.Arn}/*"
+        - Effect: Allow
+          Action:
+            - sqs:SendMessage
+          Resource: !GetAtt MealsQueue.Arn
 
 package:
   individually: true
@@ -72,9 +77,30 @@ functions:
           method: GET
           path: /meals/{mealID}
 
+  fileUploadEvent:
+    handler: src/functions/file-upload-event.handler
+    events:
+      - s3:
+          bucket: !Ref UploadsBucket
+          event: s3:ObjectCreated:*
+          existing: true
+          forceDeploy: true
+
 resources:
   Resources:
     UploadsBucket:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: gustavomorinaga-foodiary-uploads
+    MealsQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: foodiary-meals-queue
+        VisibilityTimeout: 60
+        RedrivePolicy:
+          deadLetterTargetArn: !GetAtt MealsDLQ.Arn
+          maxReceiveCount: 1
+    MealsDLQ:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: foodiary-meals-dlq
