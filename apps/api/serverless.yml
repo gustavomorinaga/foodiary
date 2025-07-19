@@ -26,19 +26,26 @@ functions:
     handler: src/functions/sign-in.handler
     events:
       - httpApi:
-          path: /sign-in
           method: POST
+          path: /sign-in
 
   signup:
     handler: src/functions/sign-up.handler
     events:
       - httpApi:
-          path: /sign-up
           method: POST
+          path: /sign-up
 
   me:
     handler: src/functions/me.handler
     events:
       - httpApi:
-          path: /me
           method: GET
+          path: /me
+
+  createMeal:
+    handler: src/functions/create-meal.handler
+    events:
+      - httpApi:
+          method: POST
+          path: /meals
