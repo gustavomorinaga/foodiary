@@ -1,6 +1,7 @@
 {
 	"name": "@foodiary/api",
 	"version": "0.0.0",
+	"private": true,
 	"scripts": {
 		"dev": "sls offline start --reloadHandler",
 		"deploy:api": "sls deploy",
