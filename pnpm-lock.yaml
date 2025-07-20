@@ -75,6 +75,12 @@ importers:
       expo:
         specifier: 53.0.20
         version: 53.0.20(@babel/core@7.26.0)(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0)
+      expo-audio:
+        specifier: 0.4.8
+        version: 0.4.8(expo@53.0.20(@babel/core@7.26.0)(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0)
+      expo-camera:
+        specifier: 16.1.11
+        version: 16.1.11(expo@53.0.20(@babel/core@7.26.0)(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0)
       expo-font:
         specifier: 13.3.2
         version: 13.3.2(expo@53.0.20(@babel/core@7.26.0)(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0))(react@19.0.0)
@@ -2672,6 +2678,24 @@ packages:
       expo: '*'
       react: '*'
       react-native: '*'
+
+  expo-audio@0.4.8:
+    resolution: {integrity: sha512-tiR4pMNlIBj/r8el8B71EYd61+1mK8sn3ssgMfbhzwKB177b5kgqOoDwjPfBcOFdbF852IGx0Akd1mduXDc6VQ==}
+    peerDependencies:
+      expo: '*'
+      react: '*'
+      react-native: '*'
+
+  expo-camera@16.1.11:
+    resolution: {integrity: sha512-etA5ZKoC6nPBnWWqiTmlX//zoFZ6cWQCCIdmpUHTGHAKd4qZNCkhPvBWbi8o32pDe57lix1V4+TPFgEcvPwsaA==}
+    peerDependencies:
+      expo: '*'
+      react: '*'
+      react-native: '*'
+      react-native-web: '*'
+    peerDependenciesMeta:
+      react-native-web:
+        optional: true
 
   expo-constants@17.1.7:
     resolution: {integrity: sha512-byBjGsJ6T6FrLlhOBxw4EaiMXrZEn/MlUYIj/JAd+FS7ll5X/S4qVRbIimSJtdW47hXMq0zxPfJX6njtA56hHA==}
@@ -7996,6 +8020,19 @@ snapshots:
       react-native: 0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0)
     transitivePeerDependencies:
       - supports-color
+
+  expo-audio@0.4.8(expo@53.0.20(@babel/core@7.26.0)(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0):
+    dependencies:
+      expo: 53.0.20(@babel/core@7.26.0)(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0)
+      react: 19.0.0
+      react-native: 0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0)
+
+  expo-camera@16.1.11(expo@53.0.20(@babel/core@7.26.0)(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0):
+    dependencies:
+      expo: 53.0.20(@babel/core@7.26.0)(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0)
+      invariant: 2.2.4
+      react: 19.0.0
+      react-native: 0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0)
 
   expo-constants@17.1.7(expo@53.0.20(@babel/core@7.26.0)(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.26.0)(@types/react@19.0.10)(react@19.0.0)):
     dependencies:

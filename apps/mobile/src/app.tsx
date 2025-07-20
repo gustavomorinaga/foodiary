@@ -9,7 +9,6 @@ import {
 } from '@expo-google-fonts/host-grotesk';
 // biome-ignore lint/performance/noNamespaceImport: This is a common pattern in React Native projects.
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -37,7 +36,6 @@ export default function App() {
 
 	return (
 		<View className="flex-1 bg-white">
-			<StatusBar style="auto" />
 			<SafeAreaProvider>
 				<HomeScreen />
 			</SafeAreaProvider>
