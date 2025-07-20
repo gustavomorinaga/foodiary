@@ -94,7 +94,7 @@ export function DailyStats({
 
 				<View className="-mt-16 items-center justify-center">
 					<Text>
-						<Text className="font-sans-bold text-support-tomato text-xl">
+						<Text className="font-sans-bold text-colors-support-tomato text-xl">
 							{Math.round(calories.current)}
 						</Text>
 						<Text className="text-base text-gray-700"> / {calories.goal}</Text>
@@ -108,7 +108,7 @@ export function DailyStats({
 
 			<View className="w-full flex-row items-center justify-between p-4">
 				<View className="w-1/3 items-center justify-center">
-					<Text className="font-sans-bold text-base text-support-teal">
+					<Text className="font-sans-bold text-base text-colors-support-teal">
 						{Math.round(proteins.current)}g
 						<Text className="text-gray-700 text-sm"> / {proteins.goal}g</Text>
 					</Text>
@@ -118,7 +118,7 @@ export function DailyStats({
 				</View>
 
 				<View className="w-1/3 items-center justify-center">
-					<Text className="font-sans-bold text-base text-support-yellow">
+					<Text className="font-sans-bold text-base text-colors-support-yellow">
 						{Math.round(carbohydrates.current)}g
 						<Text className="text-gray-700 text-sm">
 							{' '}
@@ -131,7 +131,7 @@ export function DailyStats({
 				</View>
 
 				<View className="w-1/3 items-center justify-center">
-					<Text className="font-sans-bold text-base text-support-orange">
+					<Text className="font-sans-bold text-base text-colors-support-orange">
 						{Math.round(fats.current)}g
 						<Text className="text-gray-700 text-sm"> / {fats.goal}g</Text>
 					</Text>

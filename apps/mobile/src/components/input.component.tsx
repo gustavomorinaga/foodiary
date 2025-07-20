@@ -54,7 +54,7 @@ export function Input({
 				)}
 			</View>
 			{error && (
-				<Text className="font-sans-regular text-sm text-support-red">
+				<Text className="font-sans-regular text-colors-support-red text-sm">
 					{error}
 				</Text>
 			)}

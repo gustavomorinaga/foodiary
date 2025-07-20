@@ -2,7 +2,7 @@ import { Link } from 'expo-router';
 import { ImageBackground, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../../components/button.component';
-import Logo from '../../components/logo.component';
+import { Logo } from '../../components/logo.component';
 
 export default function OnBoardingPage() {
 	return (
@@ -13,7 +13,7 @@ export default function OnBoardingPage() {
 			<SafeAreaView className="flex-1">
 				<View className="flex-1 items-center justify-between">
 					<View className="mx-auto mt-4">
-						<Logo />
+						<Logo height={32} width={100} />
 					</View>
 
 					<View className="w-full items-center">

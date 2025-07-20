@@ -26,10 +26,10 @@ export function AuthLayout({
 				</View>
 
 				<View className="mx-auto mt-6 items-center">
-					<Text className="font-sans-semibold text-[32px] text-black-700 tracking-[-0.32px]">
+					<Text className="text-center font-sans-semibold text-[32px] text-black-700 tracking-[-0.32px]">
 						{title}
 					</Text>
-					<Text className="mt-1 font-sans-regular text-base text-gray-700">
+					<Text className="mt-1 text-center font-sans-regular text-base text-gray-700">
 						{subtitle}
 					</Text>
 				</View>
