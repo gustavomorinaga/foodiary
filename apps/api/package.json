@@ -3,6 +3,7 @@
 	"version": "0.0.0",
 	"scripts": {
 		"dev": "sls offline start --reloadHandler",
+		"deploy:api": "sls deploy",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",

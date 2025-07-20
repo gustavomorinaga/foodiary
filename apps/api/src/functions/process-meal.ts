@@ -4,8 +4,8 @@ import { ProcessMeal } from '../queues/process-meal.queue';
 export async function handler(event: SQSEvent) {
 	await Promise.all(
 		event.Records.map(record => {
-			const { fileKey } = JSON.parse(record.body);
-			return ProcessMeal.process({ fileKey });
+			const body = JSON.parse(record.body);
+			return ProcessMeal.process(body);
 		})
 	);
 }
