@@ -11,7 +11,7 @@ export function ActivityLevelStep() {
 			name="activityLevel"
 			render={({ field }) => (
 				<OptionsSelector
-					onChange={value => field.onChange(Number(value))}
+					onChange={field.onChange}
 					options={[
 						{
 							icon: '🛋️',
@@ -44,7 +44,7 @@ export function ActivityLevelStep() {
 							value: '5',
 						},
 					]}
-					value={field.value?.toString()}
+					value={field.value}
 				/>
 			)}
 		/>

@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { isAxiosError } from 'axios';
 import { router } from 'expo-router';
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react-native';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { AuthLayout } from '../../../components/auth-layout.component';
 import { Button } from '../../../components/button.component';
 import { AccountStep } from '../../../components/sign-up-steps/account-step.component';
@@ -14,6 +15,7 @@ import { GoalStep } from '../../../components/sign-up-steps/goal-step.component'
 import { HeightStep } from '../../../components/sign-up-steps/height-step.component';
 import { signUpSchema } from '../../../components/sign-up-steps/sign-up.schema';
 import { WeightStep } from '../../../components/sign-up-steps/weight-step.component';
+import { useAuth } from '../../../hooks/auth.hook';
 import { colors } from '../../../styles/colors';
 
 export default function SignUp() {
@@ -81,6 +83,34 @@ export default function SignUp() {
 		setCurrentStepIndex(prevState => prevState + 1);
 	}
 
+	const { signUp } = useAuth();
+
+	const handleSubmit = form.handleSubmit(async formData => {
+		try {
+			const [day, month, year] = formData.birthDate.split('/');
+
+			await signUp({
+				height: Number(formData.height),
+				weight: Number(formData.weight),
+				activityLevel: Number(formData.activityLevel),
+				gender: formData.gender,
+				goal: formData.goal,
+				birthDate: `${year}-${month}-${day}`,
+				account: {
+					email: formData.email,
+					name: formData.name,
+					password: formData.password,
+				},
+			});
+		} catch (error) {
+			if (isAxiosError(error)) {
+				console.error(error.response?.data);
+			}
+
+			Alert.alert('Erro ao criar conta', 'Tente novamente mais tarde.');
+		}
+	});
+
 	const currentStep = steps[currentStepIndex];
 	const isLastStep = currentStepIndex === steps.length - 1;
 
@@ -101,7 +131,11 @@ export default function SignUp() {
 					</Button>
 
 					{isLastStep ? (
-						<Button className="flex-1" onPress={handleNextStep}>
+						<Button
+							className="flex-1"
+							loading={form.formState.isSubmitting}
+							onPress={handleSubmit}
+						>
 							Criar conta
 						</Button>
 					) : (

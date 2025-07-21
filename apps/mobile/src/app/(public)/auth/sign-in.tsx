@@ -1,12 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { isAxiosError } from 'axios';
 import { router } from 'expo-router';
 import { ArrowLeftIcon } from 'lucide-react-native';
 import { Controller, useForm } from 'react-hook-form';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import z from 'zod';
 import { AuthLayout } from '../../../components/auth-layout.component';
 import { Button } from '../../../components/button.component';
 import { Input } from '../../../components/input.component';
+import { useAuth } from '../../../hooks/auth.hook';
 import { colors } from '../../../styles/colors';
 
 const schema = z.object({
@@ -22,8 +24,18 @@ export default function SignInPage() {
 		defaultValues: { email: '', password: '' },
 	});
 
-	const handleSubmit = form.handleSubmit(formData => {
-		console.log('Form Data:', formData);
+	const { signIn } = useAuth();
+
+	const handleSubmit = form.handleSubmit(async formData => {
+		try {
+			await signIn(formData);
+		} catch (error) {
+			if (isAxiosError(error)) {
+				console.error(error.response?.data);
+			}
+
+			Alert.alert('Credenciais inválidas!');
+		}
 	});
 
 	return (
@@ -73,7 +85,11 @@ export default function SignInPage() {
 					<Button color="gray" onPress={router.back} size="icon">
 						<ArrowLeftIcon color={colors.black[700]} size={20} />
 					</Button>
-					<Button className="flex-1" onPress={handleSubmit}>
+					<Button
+						className="flex-1"
+						loading={form.formState.isSubmitting}
+						onPress={handleSubmit}
+					>
 						Entrar
 					</Button>
 				</View>

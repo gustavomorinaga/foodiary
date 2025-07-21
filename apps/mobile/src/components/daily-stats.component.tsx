@@ -97,7 +97,10 @@ export function DailyStats({
 						<Text className="font-sans-bold text-colors-support-tomato text-xl">
 							{Math.round(calories.current)}
 						</Text>
-						<Text className="text-base text-gray-700"> / {calories.goal}</Text>
+						<Text className="font-sans-regular text-base text-gray-700">
+							{' '}
+							/ {calories.goal}
+						</Text>
 					</Text>
 
 					<Text className="mt-1 text-center font-sans-regular text-gray-700 text-sm">
