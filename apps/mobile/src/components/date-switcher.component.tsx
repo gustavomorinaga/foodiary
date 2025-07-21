@@ -7,6 +7,7 @@ export function DateSwitcher() {
 		<View className="mt-3 flex-row items-center justify-between px-2">
 			<TouchableOpacity className="size-12 items-center justify-center">
 				<ChevronLeftIcon color={colors.black[700]} size={20} />
+				<Text className="sr-only">Anterior</Text>
 			</TouchableOpacity>
 
 			<Text className="font-sans-medium text-base text-gray-700 tracking-[1.28px]">
@@ -14,6 +15,7 @@ export function DateSwitcher() {
 			</Text>
 
 			<TouchableOpacity className="size-12 items-center justify-center">
+				<Text className="sr-only">Próximo</Text>
 				<ChevronRightIcon color={colors.black[700]} size={20} />
 			</TouchableOpacity>
 		</View>

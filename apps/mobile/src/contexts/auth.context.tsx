@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { createContext, useCallback, useEffect, useState } from 'react';
+import { queryClient } from '../clients/query.client';
 import { httpClient } from '../services/http-client.service';
 
 type TUser = {
@@ -41,9 +42,9 @@ interface IAuthContextValue {
 	signOut(): Promise<void>;
 }
 
-const TOKEN_STORAGE_KEY = '@foodiary::token';
-
 export const AuthContext = createContext({} as IAuthContextValue);
+
+const TOKEN_STORAGE_KEY = '@foodiary::token';
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
 	const [token, setToken] = useState<string | null>(null);
@@ -88,11 +89,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 		},
 	});
 
-	const signOut = useCallback(async () => {
-		setToken(null);
-		await AsyncStorage.removeItem(TOKEN_STORAGE_KEY);
-	}, []);
-
 	const { data: user, isFetching } = useQuery({
 		enabled: !!token,
 		queryKey: ['user'],
@@ -101,6 +97,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 			return data.user;
 		},
 	});
+
+	const signOut = useCallback(async () => {
+		setToken(null);
+		await AsyncStorage.removeItem(TOKEN_STORAGE_KEY);
+		queryClient.resetQueries({ queryKey: ['user'] });
+	}, []);
 
 	return (
 		<AuthContext.Provider

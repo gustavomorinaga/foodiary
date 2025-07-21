@@ -91,6 +91,7 @@ export function AudioModal({ onClose, open }: IAudioModalProps) {
 						<View className="flex-row p-5">
 							<Button color="dark" onPress={handleCloseModal} size="icon">
 								<XIcon color={colors.gray[500]} size={20} />
+								<Text className="sr-only">Fechar</Text>
 							</Button>
 						</View>
 
@@ -126,6 +127,7 @@ export function AudioModal({ onClose, open }: IAudioModalProps) {
 											size="icon"
 										>
 											<MicIcon color={colors.lime[600]} size={20} />
+											<Text className="sr-only">Gravar</Text>
 										</Button>
 									)}
 
@@ -136,6 +138,7 @@ export function AudioModal({ onClose, open }: IAudioModalProps) {
 											size="icon"
 										>
 											<SquareIcon color={colors.gray[500]} size={20} />
+											<Text className="sr-only">Parar</Text>
 										</Button>
 									)}
 								</View>
@@ -150,21 +153,25 @@ export function AudioModal({ onClose, open }: IAudioModalProps) {
 							<View className="flex-row items-center justify-center gap-8 p-5 pt-6 pb-20">
 								<Button color="dark" onPress={handleDeleteAudio} size="icon">
 									<Trash2Icon color={colors.gray[500]} size={20} />
+									<Text className="sr-only">Excluir</Text>
 								</Button>
 
 								{!player.playing && (
 									<Button color="dark" onPress={handlePlayAudio} size="icon">
 										<PlayIcon color={colors.lime[600]} size={20} />
+										<Text className="sr-only">Reproduzir</Text>
 									</Button>
 								)}
 								{player.playing && (
 									<Button color="dark" onPress={handlePauseAudio} size="icon">
 										<PauseIcon color={colors.lime[600]} size={20} />
+										<Text className="sr-only">Pausar</Text>
 									</Button>
 								)}
 
 								<Button size="icon">
 									<CheckIcon color={colors.black[700]} size={20} />
+									<Text className="sr-only">Confirmar</Text>
 								</Button>
 							</View>
 						)}

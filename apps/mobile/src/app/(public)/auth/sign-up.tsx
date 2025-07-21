@@ -4,7 +4,7 @@ import { router } from 'expo-router';
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react-native';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Alert, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import { AuthLayout } from '../../../components/auth-layout.component';
 import { Button } from '../../../components/button.component';
 import { AccountStep } from '../../../components/sign-up-steps/account-step.component';
@@ -21,9 +21,7 @@ import { colors } from '../../../styles/colors';
 export default function SignUp() {
 	const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
-	const form = useForm({
-		resolver: zodResolver(signUpSchema),
-	});
+	const form = useForm({ resolver: zodResolver(signUpSchema) });
 
 	const steps = [
 		{
@@ -128,6 +126,7 @@ export default function SignUp() {
 				<View className="flex-row justify-between gap-4">
 					<Button color="gray" onPress={handlePreviousStep} size="icon">
 						<ArrowLeftIcon color={colors.black[700]} size={20} />
+						<Text className="sr-only">Voltar</Text>
 					</Button>
 
 					{isLastStep ? (
@@ -140,6 +139,7 @@ export default function SignUp() {
 						</Button>
 					) : (
 						<Button onPress={handleNextStep} size="icon">
+							<Text className="sr-only">Próximo</Text>
 							<ArrowRightIcon color={colors.black[700]} size={20} />
 						</Button>
 					)}

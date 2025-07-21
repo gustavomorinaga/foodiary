@@ -7,18 +7,17 @@ import {
 	HostGrotesk_700Bold,
 	useFonts,
 } from '@expo-google-fonts/host-grotesk';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 // biome-ignore lint/performance/noNamespaceImport: This is a common pattern in React Native projects.
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { queryClient } from '../clients/query.client';
 import { AuthProvider } from '../contexts/auth.context';
 import { useAuth } from '../hooks/auth.hook';
 
 SplashScreen.preventAutoHideAsync();
-
-const queryClient = new QueryClient();
 
 function AppContainer() {
 	const { isLoading, isLoggedIn } = useAuth();

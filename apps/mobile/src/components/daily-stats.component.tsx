@@ -148,6 +148,10 @@ export function DailyStats({
 }
 
 function calcMacroPercentage({ goal, current }: MacroProgress) {
+	if (!goal) {
+		return 0;
+	}
+
 	const percentage = (current / goal) * 100;
 	return Math.min(percentage, 100);
 }

@@ -69,6 +69,7 @@ export function CameraModal({ onClose, open }: ICameraModalProps) {
 							<View className="flex-row p-5">
 								<Button color="dark" onPress={handleCloseModal} size="icon">
 									<XIcon color={colors.gray[500]} size={20} />
+									<Text className="sr-only">Fechar</Text>
 								</Button>
 							</View>
 
@@ -91,6 +92,7 @@ export function CameraModal({ onClose, open }: ICameraModalProps) {
 											size="icon"
 										>
 											<CameraIcon color={colors.lime[600]} size={20} />
+											<Text className="sr-only">Tirar foto</Text>
 										</Button>
 									</View>
 
@@ -104,9 +106,11 @@ export function CameraModal({ onClose, open }: ICameraModalProps) {
 								<View className="flex-row items-center justify-center gap-8 p-5 pt-6 pb-12">
 									<Button color="dark" onPress={handleDeletePhoto} size="icon">
 										<Trash2Icon color={colors.gray[500]} size={20} />
+										<Text className="sr-only">Excluir</Text>
 									</Button>
 									<Button size="icon">
 										<CheckIcon color={colors.black[700]} size={20} />
+										<Text className="sr-only">Confirmar</Text>
 									</Button>
 								</View>
 							)}
