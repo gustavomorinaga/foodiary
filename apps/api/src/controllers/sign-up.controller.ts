@@ -1,11 +1,11 @@
 import { hash } from 'bcryptjs';
 import { eq } from 'drizzle-orm';
 import z from 'zod';
-import { db } from '../db/connection';
-import { schema } from '../db/schema';
-import { calculateGoals } from '../lib/calc-goals.lib';
-import type { HttpRequest, HttpResponse } from '../types/http.type';
-import { badRequest, conflict, created } from '../utils/http.util';
+import { db } from '$/db/connection';
+import { schema } from '$/db/schema';
+import { calculateGoals } from '$/lib/calc-goals.lib';
+import type { HttpRequest, HttpResponse } from '$/types/http.type';
+import { badRequest, conflict, created } from '$/utils/http.util';
 
 const signInSchema = z.object({
 	goal: z.enum(['lose', 'maintain', 'gain']),

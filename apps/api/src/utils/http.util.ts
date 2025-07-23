@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: This is a utility file where `any` is acceptable. */
 
-import type { HttpResponse } from '../types/http.type';
+import type { HttpResponse } from '$/types/http.type';
 
 export function ok(body?: Record<string, any>): HttpResponse {
 	return { statusCode: 200, body };

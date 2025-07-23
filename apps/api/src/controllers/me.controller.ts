@@ -1,8 +1,8 @@
 import { eq } from 'drizzle-orm';
-import { db } from '../db/connection';
-import { schema } from '../db/schema';
-import type { HttpResponse, ProtectedHttpRequest } from '../types/http.type';
-import { ok } from '../utils/http.util';
+import { db } from '$/db/connection';
+import { schema } from '$/db/schema';
+import type { HttpResponse, ProtectedHttpRequest } from '$/types/http.type';
+import { ok } from '$/utils/http.util';
 
 export class MeController {
 	static async handle({ userID }: ProtectedHttpRequest): Promise<HttpResponse> {

@@ -1,5 +1,5 @@
 import type { APIGatewayProxyEventV2 } from 'aws-lambda';
-import type { HttpRequest } from '../types/http.type';
+import type { HttpRequest } from '$/types/http.type';
 
 export function parseEvent(event: APIGatewayProxyEventV2): HttpRequest {
 	const body = JSON.parse(event.body || '{}');

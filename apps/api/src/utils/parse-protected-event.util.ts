@@ -1,6 +1,6 @@
 import type { APIGatewayProxyEventV2 } from 'aws-lambda';
-import { validateAccessToken } from '../lib/jwt.lib';
-import type { ProtectedHttpRequest } from '../types/http.type';
+import { validateAccessToken } from '$/lib/jwt.lib';
+import type { ProtectedHttpRequest } from '$/types/http.type';
 import { parseEvent } from './parse-event.util';
 
 export function parseProtectedEvent(

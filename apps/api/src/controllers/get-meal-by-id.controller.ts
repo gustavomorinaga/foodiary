@@ -1,9 +1,9 @@
 import { and, eq } from 'drizzle-orm';
 import z from 'zod';
-import { db } from '../db/connection';
-import { schema } from '../db/schema';
-import type { HttpResponse, ProtectedHttpRequest } from '../types/http.type';
-import { badRequest, ok } from '../utils/http.util';
+import { db } from '$/db/connection';
+import { schema } from '$/db/schema';
+import type { HttpResponse, ProtectedHttpRequest } from '$/types/http.type';
+import { badRequest, ok } from '$/utils/http.util';
 
 const getMealByIDSchema = z.object({ mealID: z.uuid() });
 

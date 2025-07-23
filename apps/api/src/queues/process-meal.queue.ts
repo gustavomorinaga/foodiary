@@ -1,11 +1,11 @@
 import { Readable } from 'node:stream';
 import { GetObjectCommand } from '@aws-sdk/client-s3';
 import { eq } from 'drizzle-orm';
-import { s3Client } from '../clients/s3.client';
-import { db } from '../db/connection';
-import { schema } from '../db/schema';
-import { env } from '../env';
-import { transcribeAudio } from '../services/ai.service';
+import { s3Client } from '$/clients/s3.client';
+import { db } from '$/db/connection';
+import { schema } from '$/db/schema';
+import { env } from '$/env';
+import { transcribeAudio } from '$/services/ai.service';
 
 export class ProcessMeal {
 	static async process({ fileKey }: { fileKey: string }) {

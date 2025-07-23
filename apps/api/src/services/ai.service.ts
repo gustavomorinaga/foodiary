@@ -1,5 +1,5 @@
 import OpenAI, { toFile } from 'openai';
-import { env } from '../env';
+import { env } from '$/env';
 
 export const aiClient = new OpenAI({ apiKey: env.OPENAI_API_KEY });
 

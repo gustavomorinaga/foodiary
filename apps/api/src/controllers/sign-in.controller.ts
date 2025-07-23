@@ -1,11 +1,11 @@
 import { compare } from 'bcryptjs';
 import { eq } from 'drizzle-orm';
 import z from 'zod';
-import { db } from '../db/connection';
-import { schema } from '../db/schema';
-import { signAccessToken } from '../lib/jwt.lib';
-import type { HttpRequest, HttpResponse } from '../types/http.type';
-import { badRequest, ok, unauthorized } from '../utils/http.util';
+import { db } from '$/db/connection';
+import { schema } from '$/db/schema';
+import { signAccessToken } from '$/lib/jwt.lib';
+import type { HttpRequest, HttpResponse } from '$/types/http.type';
+import { badRequest, ok, unauthorized } from '$/utils/http.util';
 
 const signInSchema = z.object({
 	email: z.email(),

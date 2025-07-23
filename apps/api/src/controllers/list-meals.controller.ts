@@ -1,9 +1,9 @@
 import { and, eq, gte, lte } from 'drizzle-orm';
 import z from 'zod';
-import { db } from '../db/connection';
-import { schema } from '../db/schema';
-import type { HttpResponse, ProtectedHttpRequest } from '../types/http.type';
-import { badRequest, ok } from '../utils/http.util';
+import { db } from '$/db/connection';
+import { schema } from '$/db/schema';
+import type { HttpResponse, ProtectedHttpRequest } from '$/types/http.type';
+import { badRequest, ok } from '$/utils/http.util';
 
 const listMealsSchema = z.object({
 	date: z.iso.date().transform(dateString => new Date(dateString)),

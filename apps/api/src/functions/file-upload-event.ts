@@ -1,7 +1,7 @@
 import { SendMessageCommand } from '@aws-sdk/client-sqs';
 import type { S3Event } from 'aws-lambda';
-import { sqsClient } from '../clients/sqs.client';
-import { env } from '../env';
+import { sqsClient } from '$/clients/sqs.client';
+import { env } from '$/env';
 
 export async function handler(event: S3Event) {
 	await Promise.all(

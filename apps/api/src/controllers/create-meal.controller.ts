@@ -1,12 +1,13 @@
+import crypto from 'node:crypto';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import z from 'zod';
-import { s3Client } from '../clients/s3.client';
-import { db } from '../db/connection';
-import { schema } from '../db/schema';
-import { env } from '../env';
-import type { HttpResponse, ProtectedHttpRequest } from '../types/http.type';
-import { badRequest, ok } from '../utils/http.util';
+import { s3Client } from '$/clients/s3.client';
+import { db } from '$/db/connection';
+import { schema } from '$/db/schema';
+import { env } from '$/env';
+import type { HttpResponse, ProtectedHttpRequest } from '$/types/http.type';
+import { badRequest, ok } from '$/utils/http.util';
 
 const createMealSchema = z.object({
 	fileType: z.enum(['audio/m4a', 'image/jpeg']),
