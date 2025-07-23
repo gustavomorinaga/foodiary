@@ -1,6 +1,11 @@
+import { Readable } from 'node:stream';
+import { GetObjectCommand } from '@aws-sdk/client-s3';
 import { eq } from 'drizzle-orm';
+import { s3Client } from '../clients/s3.client';
 import { db } from '../db/connection';
 import { schema } from '../db/schema';
+import { env } from '../env';
+import { transcribeAudio } from '../services/ai.service';
 
 export class ProcessMeal {
 	static async process({ fileKey }: { fileKey: string }) {
@@ -21,9 +26,32 @@ export class ProcessMeal {
 			.set({ status: 'processing' })
 			.where(eq(schema.meals.id, meal.id));
 
-		// call AI...
-
 		try {
+			if (meal.inputType === 'audio') {
+				const command = new GetObjectCommand({
+					Bucket: env.BUCKET_NAME,
+					Key: meal.inputFileKey,
+				});
+
+				const { Body } = await s3Client.send(command);
+
+				if (!(Body && Body instanceof Readable)) {
+					throw new Error('Cannot load the audio file.');
+				}
+
+				const chunks: Buffer[] = [];
+				for await (const chunk of Body) {
+					chunks.push(chunk);
+				}
+
+				const audioFileBuffer = Buffer.concat(chunks);
+
+				const transcription = await transcribeAudio(audioFileBuffer);
+
+				// biome-ignore lint/suspicious/noConsole: Debugging purpose
+				console.log({ transcription });
+			}
+
 			await db
 				.update(schema.meals)
 				.set({ status: 'success' })
