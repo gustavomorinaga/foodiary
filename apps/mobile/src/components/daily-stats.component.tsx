@@ -148,7 +148,7 @@ export function DailyStats({
 }
 
 function calcMacroPercentage({ goal, current }: MacroProgress) {
-	if (!goal) {
+	if (!current) {
 		return 0;
 	}
 

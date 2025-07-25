@@ -31,6 +31,7 @@ export default function SignInPage() {
 			await signIn(formData);
 		} catch (error) {
 			if (isAxiosError(error)) {
+				// biome-ignore lint/suspicious/noConsole: Debugging purpose
 				console.error(error.response?.data);
 			}
 

@@ -18,12 +18,12 @@ export function MealCard({ id, icon, name, createdAt, foods }: IMealCardProps) {
 					{formatDateTime(createdAt)}
 				</Text>
 
-				<View className="mt-2 flex-row items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-5">
+				<View className="mt-2 flex-row items-center gap-3 rounded-2xl border border-gray-200 px-4 py-5">
 					<View className="size-12 items-center justify-center rounded-full bg-gray-200">
 						<Text>{icon}</Text>
 					</View>
 
-					<View>
+					<View className="flex-1">
 						<Text className="font-sans-regular text-base text-gray-700">
 							{name}
 						</Text>

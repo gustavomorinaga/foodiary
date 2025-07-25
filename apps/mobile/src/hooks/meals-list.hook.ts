@@ -11,7 +11,7 @@ export type TMeal = {
 		calories: number;
 		proteins: number;
 		carbohydrates: number;
-		fasts: number;
+		fats: number;
 	}[];
 	createdAt: string;
 };

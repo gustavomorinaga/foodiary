@@ -4,6 +4,7 @@ import z from 'zod';
 import { db } from '$/db/connection';
 import { schema } from '$/db/schema';
 import { calculateGoals } from '$/lib/calc-goals.lib';
+import { signAccessToken } from '$/lib/jwt.lib';
 import type { HttpRequest, HttpResponse } from '$/types/http.type';
 import { badRequest, conflict, created } from '$/utils/http.util';
 
@@ -57,13 +58,11 @@ export class SignUpController {
 				...rest,
 				...goals,
 				password: hashedPassword,
-				calories: 0,
-				proteins: 0,
-				carbohydrates: 0,
-				fats: 0,
 			})
 			.returning({ id: schema.users.id });
 
-		return created({ userID: user.id });
+		const accessToken = signAccessToken(user.id);
+
+		return created({ accessToken });
 	}
 }

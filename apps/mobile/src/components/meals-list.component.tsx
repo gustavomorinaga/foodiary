@@ -35,7 +35,7 @@ function MealsListHeader({
 				calories += food.calories;
 				proteins += food.proteins;
 				carbohydrates += food.carbohydrates;
-				fats += food.fasts;
+				fats += food.fats;
 			}
 		}
 

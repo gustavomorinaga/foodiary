@@ -8,7 +8,7 @@ import { Alert, Text, View } from 'react-native';
 import { AuthLayout } from '../../../components/auth-layout.component';
 import { Button } from '../../../components/button.component';
 import { AccountStep } from '../../../components/sign-up-steps/account-step.component';
-import { ActivityLevelStep } from '../../../components/sign-up-steps/activity-level.component';
+import { ActivityLevelStep } from '../../../components/sign-up-steps/activity-level-step.component';
 import { BirthDateStep } from '../../../components/sign-up-steps/birth-date-step.component';
 import { GenderStep } from '../../../components/sign-up-steps/gender-step.component';
 import { GoalStep } from '../../../components/sign-up-steps/goal-step.component';
@@ -102,6 +102,7 @@ export default function SignUp() {
 			});
 		} catch (error) {
 			if (isAxiosError(error)) {
+				// biome-ignore lint/suspicious/noConsole: Debugging purpose
 				console.error(error.response?.data);
 			}
 
