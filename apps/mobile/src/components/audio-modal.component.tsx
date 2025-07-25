@@ -6,6 +6,7 @@ import {
 	useAudioRecorder,
 	useAudioRecorderState,
 } from 'expo-audio';
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import {
 	CheckIcon,
@@ -21,7 +22,7 @@ import { Alert, Modal, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useCreateMeal } from '../hooks/create-meal.hook';
 import { colors } from '../styles/colors';
-import { cn } from '../utils/cn';
+import { cn } from '../utils/cn.util';
 import { Button } from './button.component';
 
 interface IAudioModalProps {
@@ -36,7 +37,13 @@ export function AudioModal({ onClose, open }: IAudioModalProps) {
 	const { isRecording } = useAudioRecorderState(audioRecorder);
 	const player = useAudioPlayer(audioURI);
 
-	const { createMeal } = useCreateMeal('audio/m4a');
+	const { createMeal, isLoading } = useCreateMeal({
+		fileType: 'audio/m4a',
+		onSuccess: mealID => {
+			router.push(`/meals/${mealID}`);
+			handleCloseModal();
+		},
+	});
 
 	useEffect(() => {
 		(async () => {
@@ -172,7 +179,11 @@ export function AudioModal({ onClose, open }: IAudioModalProps) {
 									</Button>
 								)}
 
-								<Button onPress={() => createMeal(audioURI)} size="icon">
+								<Button
+									loading={isLoading}
+									onPress={() => createMeal(audioURI)}
+									size="icon"
+								>
 									<CheckIcon color={colors.black[700]} size={20} />
 									<Text className="sr-only">Confirmar</Text>
 								</Button>

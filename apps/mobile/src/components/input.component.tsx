@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { cn } from '../utils/cn';
+import { cn } from '../utils/cn.util';
 
 interface IInputProps extends React.ComponentProps<typeof TextInput> {
 	mask?: string;

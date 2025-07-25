@@ -1,4 +1,5 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { CameraIcon, CheckIcon, Trash2Icon, XIcon } from 'lucide-react-native';
 import { useRef, useState } from 'react';
@@ -19,11 +20,17 @@ export function CameraModal({ onClose, open }: ICameraModalProps) {
 
 	const cameraRef = useRef<CameraView>(null);
 
-	const { createMeal } = useCreateMeal('image/jpeg');
+	const { createMeal, isLoading } = useCreateMeal({
+		fileType: 'image/jpeg',
+		onSuccess: mealID => {
+			router.push(`/meals/${mealID}`);
+			handleCloseModal();
+		},
+	});
 
 	function handleCloseModal() {
-		onClose();
 		setPhotoURI(null);
+		onClose();
 	}
 
 	async function handleTakePicture() {
@@ -111,7 +118,11 @@ export function CameraModal({ onClose, open }: ICameraModalProps) {
 										<Trash2Icon color={colors.gray[500]} size={20} />
 										<Text className="sr-only">Excluir</Text>
 									</Button>
-									<Button onPress={() => createMeal(photoURI)} size="icon">
+									<Button
+										loading={isLoading}
+										onPress={() => createMeal(photoURI)}
+										size="icon"
+									>
 										<CheckIcon color={colors.black[700]} size={20} />
 										<Text className="sr-only">Confirmar</Text>
 									</Button>

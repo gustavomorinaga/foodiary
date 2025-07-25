@@ -1,17 +1,25 @@
-import { useMutation } from '@tanstack/react-query';
-import FileSystem from 'expo-file-system';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+// biome-ignore lint/performance/noNamespaceImport: Expo FileSystem needs to be imported as a namespace
+import * as FileSystem from 'expo-file-system';
 import { httpClient } from '../services/http-client.service';
 
-type TCreateMealResponse = {
+export type TCreateMealResponse = {
 	mealID: string;
 	uploadURL: string;
 };
 
-export function useCreateMeal(fileType: string) {
-	const { mutateAsync: createMeal, isPending: isLoading } = useMutation({
+interface ICreateMealParams {
+	fileType: 'image/jpeg' | 'audio/m4a';
+	onSuccess?: (mealID: string) => void;
+}
+
+export function useCreateMeal({ fileType, onSuccess }: ICreateMealParams) {
+	const queryClient = useQueryClient();
+
+	const { mutateAsync, isPending } = useMutation({
 		mutationFn: async (uri: string) => {
 			const {
-				data: { uploadURL },
+				data: { mealID, uploadURL },
 			} = await httpClient.post<TCreateMealResponse>('/meals', {
 				fileType,
 			});
@@ -20,8 +28,17 @@ export function useCreateMeal(fileType: string) {
 				httpMethod: 'PUT',
 				uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
 			});
+
+			return { mealID };
+		},
+		onSuccess: ({ mealID }) => {
+			onSuccess?.(mealID);
+			queryClient.refetchQueries({ queryKey: ['meals'] });
 		},
 	});
 
-	return { createMeal, isLoading };
+	return {
+		createMeal: mutateAsync,
+		isLoading: isPending,
+	};
 }
