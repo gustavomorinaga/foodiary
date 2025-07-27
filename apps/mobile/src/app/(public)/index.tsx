@@ -1,14 +1,14 @@
 import { Link } from 'expo-router';
 import { ImageBackground, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button } from '../../components/button.component';
-import { Logo } from '../../components/logo.component';
+import { Button } from '$/components/button.component';
+import { Logo } from '$/components/logo.component';
 
 export default function OnBoardingPage() {
 	return (
 		<ImageBackground
 			className="flex-1"
-			source={require('../../assets/onboarding-bg/onboarding-bg.png')}
+			source={require('$/assets/onboarding-bg/onboarding-bg.png')}
 		>
 			<SafeAreaView className="flex-1">
 				<View className="flex-1 items-center justify-between">

@@ -20,9 +20,9 @@ import {
 import { useEffect, useState } from 'react';
 import { Alert, Modal, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useCreateMeal } from '../hooks/create-meal.hook';
-import { colors } from '../styles/colors';
-import { cn } from '../utils/cn.util';
+import { useCreateMeal } from '$/hooks/create-meal.hook';
+import { colors } from '$/styles/colors';
+import { cn } from '$/utils/cn.util';
 import { Button } from './button.component';
 
 interface IAudioModalProps {

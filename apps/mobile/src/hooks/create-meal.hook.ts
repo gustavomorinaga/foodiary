@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 // biome-ignore lint/performance/noNamespaceImport: Expo FileSystem needs to be imported as a namespace
 import * as FileSystem from 'expo-file-system';
-import { httpClient } from '../services/http-client.service';
+import { httpClient } from '$/services/http-client.service';
 
 export type TCreateMealResponse = {
 	mealID: string;

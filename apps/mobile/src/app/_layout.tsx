@@ -1,4 +1,4 @@
-import '../styles/global.css';
+import '$/styles/global.css';
 
 import {
 	HostGrotesk_400Regular,
@@ -13,9 +13,9 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { queryClient } from '../clients/query.client';
-import { AuthProvider } from '../contexts/auth.context';
-import { useAuth } from '../hooks/auth.hook';
+import { queryClient } from '$/clients/query.client';
+import { AuthProvider } from '$/contexts/auth.context';
+import { useAuth } from '$/hooks/auth.hook';
 
 SplashScreen.preventAutoHideAsync();
 

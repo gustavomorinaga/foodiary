@@ -1,8 +1,8 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { ActivityIndicator, Text, View } from 'react-native';
-import { Button } from '../../../components/button.component';
-import { Logo } from '../../../components/logo.component';
-import { useMealDetails } from '../../../hooks/meal-details.hook';
+import { Button } from '$/components/button.component';
+import { Logo } from '$/components/logo.component';
+import { useMealDetails } from '$/hooks/meal-details.hook';
 
 export default function MealDetails() {
 	const { mealID } = useLocalSearchParams();

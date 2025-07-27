@@ -4,8 +4,8 @@ import {
 	SafeAreaView,
 	useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import { useAuth } from '../hooks/auth.hook';
-import { colors } from '../styles/colors';
+import { useAuth } from '$/hooks/auth.hook';
+import { colors } from '$/styles/colors';
 
 export function HomeHeader() {
 	const { top } = useSafeAreaInsets();

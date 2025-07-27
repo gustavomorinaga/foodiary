@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { httpClient } from '../services/http-client.service';
+import { httpClient } from '$/services/http-client.service';
 
 export type TMeal = {
 	id: string;

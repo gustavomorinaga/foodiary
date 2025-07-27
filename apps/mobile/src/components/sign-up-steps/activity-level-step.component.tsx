@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import { OptionsSelector } from '../options-selector.component';
+import { OptionsSelector } from '$/components/options-selector.component';
 import type { SignUpFormData } from './sign-up.schema';
 
 export function ActivityLevelStep() {

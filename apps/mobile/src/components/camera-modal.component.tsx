@@ -5,8 +5,8 @@ import { CameraIcon, CheckIcon, Trash2Icon, XIcon } from 'lucide-react-native';
 import { useRef, useState } from 'react';
 import { Image, Modal, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useCreateMeal } from '../hooks/create-meal.hook';
-import { colors } from '../styles/colors';
+import { useCreateMeal } from '$/hooks/create-meal.hook';
+import { colors } from '$/styles/colors';
 import { Button } from './button.component';
 
 interface ICameraModalProps {

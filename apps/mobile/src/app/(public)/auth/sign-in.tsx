@@ -5,11 +5,11 @@ import { ArrowLeftIcon } from 'lucide-react-native';
 import { Controller, useForm } from 'react-hook-form';
 import { Alert, View } from 'react-native';
 import z from 'zod';
-import { AuthLayout } from '../../../components/auth-layout.component';
-import { Button } from '../../../components/button.component';
-import { Input } from '../../../components/input.component';
-import { useAuth } from '../../../hooks/auth.hook';
-import { colors } from '../../../styles/colors';
+import { AuthLayout } from '$/components/auth-layout.component';
+import { Button } from '$/components/button.component';
+import { Input } from '$/components/input.component';
+import { useAuth } from '$/hooks/auth.hook';
+import { colors } from '$/styles/colors';
 
 const schema = z.object({
 	email: z.email({ message: 'Informe um e-mail válido' }),

@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { formatDateTime } from '../utils/format-date-time.util';
+import { formatDateTime } from '$/utils/format-date-time.util';
 
 interface IMealCardProps {
 	id: string;

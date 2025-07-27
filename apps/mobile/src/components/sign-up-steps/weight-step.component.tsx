@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import { Input } from '../input.component';
+import { Input } from '$/components/input.component';
 import type { SignUpFormData } from './sign-up.schema';
 
 export function WeightStep() {

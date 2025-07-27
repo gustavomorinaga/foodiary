@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { createContext, useCallback, useEffect, useState } from 'react';
-import { queryClient } from '../clients/query.client';
-import { httpClient } from '../services/http-client.service';
+import { queryClient } from '$/clients/query.client';
+import { httpClient } from '$/services/http-client.service';
 
 type TUser = {
 	email: string;

@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react-native';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { colors } from '../styles/colors';
-import { formatDate } from '../utils/format-date.util';
+import { colors } from '$/styles/colors';
+import { formatDate } from '$/utils/format-date.util';
 
 interface IDateSwitcherProps {
 	currentDate: Date;

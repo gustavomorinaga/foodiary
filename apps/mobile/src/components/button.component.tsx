@@ -1,5 +1,5 @@
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-import { cn } from '../utils/cn.util';
+import { cn } from '$/utils/cn.util';
 
 interface IButtonProps extends React.ComponentProps<typeof Pressable> {
 	loading?: boolean;

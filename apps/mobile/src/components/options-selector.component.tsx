@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, View } from 'react-native';
-import { cn } from '../utils/cn.util';
+import { cn } from '$/utils/cn.util';
 
 interface IOptionSelectorProps {
 	value?: string;
