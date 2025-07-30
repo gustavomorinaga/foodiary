@@ -4,105 +4,21 @@ service: foodiary-api
 plugins:
   - serverless-offline
 
-provider:
-  name: aws
-  region: us-east-1
-  runtime: nodejs22.x
-  architecture: arm64
-  environment:
-    DATABASE_URL: ${env:DATABASE_URL}
-    JWT_SECRET: ${env:JWT_SECRET}
-    BUCKET_NAME: !Ref UploadsBucket
-    MEALS_QUEUE_URL: !GetAtt MealsQueue.QueueUrl
-    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
-  iam:
-    role:
-      statements:
-        - Effect: Allow
-          Action:
-            - s3:PutObject
-            - s3:GetObject
-          Resource: !Sub "${UploadsBucket.Arn}/*"
-        - Effect: Allow
-          Action:
-            - sqs:SendMessage
-          Resource: !GetAtt MealsQueue.Arn
+custom: ${file(./sls/custom.yaml)}
+
+provider: ${file(./sls/provider.yaml)}
 
 package:
   individually: true
 
-build:
-  esbuild:
-    minify: true
-    sourcemap: false
+build: ${file(./sls/build.yaml)}
 
 functions:
-  signin:
-    handler: src/functions/sign-in.handler
-    events:
-      - httpApi:
-          method: POST
-          path: /sign-in
-  signup:
-    handler: src/functions/sign-up.handler
-    events:
-      - httpApi:
-          method: POST
-          path: /sign-up
-  me:
-    handler: src/functions/me.handler
-    events:
-      - httpApi:
-          method: GET
-          path: /me
-  createMeal:
-    handler: src/functions/create-meal.handler
-    events:
-      - httpApi:
-          method: POST
-          path: /meals
-  listMeals:
-    handler: src/functions/list-meals.handler
-    events:
-      - httpApi:
-          method: GET
-          path: /meals
-  getMealByID:
-    handler: src/functions/get-meal-by-id.handler
-    events:
-      - httpApi:
-          method: GET
-          path: /meals/{mealID}
-  fileUploadEvent:
-    handler: src/functions/file-upload-event.handler
-    events:
-      - s3:
-          bucket: !Ref UploadsBucket
-          event: s3:ObjectCreated:*
-          existing: true
-          forceDeploy: true
-  processMeal:
-    handler: src/functions/process-meal.handler
-    events:
-      - sqs:
-          arn: !GetAtt MealsQueue.Arn
-          batchSize: 1
+  - ${file(./sls/functions/auth.yaml)}
+  - ${file(./sls/functions/meals.yaml)}
+  - ${file(./sls/functions/events/s3/upload.yaml)}
+  - ${file(./sls/functions/events/sqs/meal.yaml)}
 
 resources:
-  Resources:
-    UploadsBucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: gustavomorinaga-foodiary-uploads
-    MealsQueue:
-      Type: AWS::SQS::Queue
-      Properties:
-        QueueName: foodiary-meals-queue
-        VisibilityTimeout: 60
-        RedrivePolicy:
-          deadLetterTargetArn: !GetAtt MealsDLQ.Arn
-          maxReceiveCount: 1
-    MealsDLQ:
-      Type: AWS::SQS::Queue
-      Properties:
-        QueueName: foodiary-meals-dlq
+  - ${file(./sls/resources/s3/uploads.yaml)}
+  - ${file(./sls/resources/sqs/meals.yaml)}

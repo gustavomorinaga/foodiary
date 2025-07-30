@@ -1,0 +1,18 @@
+createMeal:
+  handler: src/functions/create-meal.handler
+  events:
+    - httpApi:
+        method: POST
+        path: /meals
+listMeals:
+  handler: src/functions/list-meals.handler
+  events:
+    - httpApi:
+        method: GET
+        path: /meals
+getMealByID:
+  handler: src/functions/get-meal-by-id.handler
+  events:
+    - httpApi:
+        method: GET
+        path: /meals/{mealID}

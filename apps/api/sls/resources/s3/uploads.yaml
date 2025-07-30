@@ -1,0 +1,5 @@
+Resources:
+  UploadsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: gustavomorinaga-foodiary-uploads

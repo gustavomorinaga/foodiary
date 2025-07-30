@@ -1,0 +1,8 @@
+fileUploadEvent:
+  handler: src/functions/file-upload-event.handler
+  events:
+    - s3:
+        bucket: !Ref UploadsBucket
+        event: s3:ObjectCreated:*
+        existing: true
+        forceDeploy: true

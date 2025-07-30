@@ -1,0 +1,25 @@
+name: aws
+region: ${self:custom.defaults.region}
+stage: ${opt:stage, self:custom.defaults.stage}
+runtime: nodejs22.x
+architecture: arm64
+memorySize: 128
+timeout: 3
+environment:
+  DATABASE_URL: ${env:DATABASE_URL}
+  JWT_SECRET: ${env:JWT_SECRET}
+  BUCKET_NAME: !Ref UploadsBucket
+  MEALS_QUEUE_URL: !GetAtt MealsQueue.QueueUrl
+  OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+iam:
+  role:
+    statements:
+      - Effect: Allow
+        Action:
+          - s3:PutObject
+          - s3:GetObject
+        Resource: !Sub "${UploadsBucket.Arn}/*"
+      - Effect: Allow
+        Action:
+          - sqs:SendMessage
+        Resource: !GetAtt MealsQueue.Arn

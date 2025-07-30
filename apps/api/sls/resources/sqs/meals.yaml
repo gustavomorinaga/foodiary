@@ -1,0 +1,13 @@
+Resources:
+  MealsQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: foodiary-meals-queue
+      VisibilityTimeout: 60
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt MealsDLQ.Arn
+        maxReceiveCount: 1
+  MealsDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: foodiary-meals-dlq

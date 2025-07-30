@@ -1,0 +1,6 @@
+processMeal:
+  handler: src/functions/process-meal.handler
+  events:
+    - sqs:
+        arn: !GetAtt MealsQueue.Arn
+        batchSize: 1

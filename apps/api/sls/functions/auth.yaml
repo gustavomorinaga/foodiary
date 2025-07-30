@@ -1,0 +1,18 @@
+signin:
+  handler: src/functions/sign-in.handler
+  events:
+    - httpApi:
+        method: POST
+        path: /sign-in
+signup:
+  handler: src/functions/sign-up.handler
+  events:
+    - httpApi:
+        method: POST
+        path: /sign-up
+me:
+  handler: src/functions/me.handler
+  events:
+    - httpApi:
+        method: GET
+        path: /me
